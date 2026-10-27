@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/MattJaxson/libra/mandates/mandate.schema.json",
+  "title": "Libra Community Mandate v0.1",
+  "description": "A machine-readable rulebook in which a public body or community, not the audited company or its auditor, fixes every parameter that decides whether a published AI bias audit passes. Evidence (the company's published counts) and rules (the mandate) are kept separate, so any audit can be judged under any mandate.",
+  "type": "object",
+  "required": ["mandate_id", "title", "version", "status", "authority", "scope", "rules", "rationale"],
+  "additionalProperties": false,
+  "properties": {
+    "mandate_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"},
+    "title": {"type": "string"},
+    "version": {"type": "string"},
+    "status": {
+      "enum": ["descriptive", "illustrative", "draft", "adopted", "retired"],
+      "description": "descriptive = encodes what current law permits; illustrative = example, adopted by no one; draft = under deliberation; adopted = ratified by the authority named below, with a public record."
+    },
+    "authority": {
+      "type": "object",
+      "required": ["kind", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"enum": ["statute_or_rule", "community_body", "public_agency", "example"]},
+        "name": {"type": "string"},
+        "process": {"type": "string", "description": "How the rules were decided: hearing, assembly vote, consent process, rulemaking."},
+        "adopted_on": {"type": ["string", "null"], "format": "date"},
+        "record_uri": {"type": ["string", "null"], "description": "Public record of the decision (minutes, vote, rulemaking docket). Required for status=adopted."}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": ["jurisdiction", "decision_types"],
+      "additionalProperties": false,
+      "properties": {
+        "jurisdiction": {"type": "string"},
+        "decision_types": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "rules": {
+      "type": "object",
+      "required": ["threshold", "reading", "alpha", "familywise", "comparator_rule", "small_category_exclusion", "indeterminate_is", "accept_test_data"],
+      "additionalProperties": false,
+      "properties": {
+        "threshold": {"type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Impact-ratio benchmark (0.80 = four-fifths)."},
+        "reading": {"enum": ["point", "interval"], "description": "point = compare the bare published ratio; interval = require the uncertainty interval to settle the question."},
+        "alpha": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 0.5, "description": "Two-sided error level for intervals (0.10 = 90% intervals). Ignored for point reading."},
+        "familywise": {"type": "boolean", "description": "Adjust for the number of comparisons in an audit (Bonferroni)."},
+        "comparator_rule": {"enum": ["max_rate_eligible", "max_rate_all"], "description": "Which group is the reference: highest rate among eligible groups, or among all groups."},
+        "small_category_exclusion": {"type": ["number", "null"], "minimum": 0, "maximum": 0.1, "description": "Share of applicants below which a group is dropped from the calculations; null = never drop. Under NYC LL144 this is at the auditor's discretion (6 RCNY 5-301(d))."},
+        "indeterminate_is": {"enum": ["pass", "fail", "insufficient_evidence"], "description": "Who carries the burden when the evidence cannot settle the question."},
+        "accept_test_data": {"type": "boolean", "description": "Whether an audit built on test or unknown data, rather than real applicant data, can satisfy the mandate."}
+      }
+    },
+    "rationale": {
+      "type": "object",
+      "description": "Why each rule was chosen, in the authority's own words. Keys mirror rules.",
+      "additionalProperties": {"type": "string"}
+    }
+  }
+}

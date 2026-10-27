@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use Community Mandates, please cite the paper below."
+title: "Community Mandates: machine-readable rulebooks for judging AI bias audits, set by the public"
+type: software
+authors:
+  - family-names: Jackson
+    given-names: Matthew
+    affiliation: "Independent Researcher, Detroit, MI, USA"
+version: "0.1.0"
+date-released: "2026-10-27"
+license: Apache-2.0
+repository-code: "https://github.com/MattJaxson/community-mandates"
+keywords:
+  - AI governance
+  - bias audit
+  - NYC Local Law 144
+  - four-fifths rule
+  - public participation
+preferred-citation:
+  type: article
+  title: "Four-Fifths of What? Statistical Indeterminacy in NYC Local Law 144 Bias Audits and the Governance Parameters It Exposes"
+  authors:
+    - family-names: Jackson
+      given-names: Matthew
+  year: 2026
+  publisher:
+    name: Zenodo
+  doi: "10.5281/zenodo.23672859"

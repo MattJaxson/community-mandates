@@ -1,0 +1,6 @@
+# Versions used to produce the released results (Python 3.12.0)
+numpy==2.5.4
+pandas==3.0.6
+jsonschema==4.26.0
+pytest==9.1.1
+libra-check @ git+https://github.com/MattJaxson/libra-check@v0.2.0

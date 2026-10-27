@@ -1,0 +1,16 @@
+{
+  "mandate_id": "illustrative-community-precautionary",
+  "title": "Illustrative community mandate: evidence must settle the question",
+  "version": "0.1",
+  "status": "illustrative",
+  "authority": {"kind": "example", "name": "Example only. Not adopted by any community, council or agency.", "process": "Shows the shape of a decision a community body could make after deliberation.", "adopted_on": null, "record_uri": null},
+  "scope": {"jurisdiction": "Any", "decision_types": ["hiring", "promotion"]},
+  "rules": {"threshold": 0.8, "reading": "interval", "alpha": 0.1, "familywise": true, "comparator_rule": "max_rate_all", "small_category_exclusion": null, "indeterminate_is": "insufficient_evidence", "accept_test_data": false},
+  "rationale": {
+    "reading": "A ratio counts only when its 90% interval settles which side of 0.80 it is on.",
+    "familywise": "An audit with many groups should not fail, or pass, by chance.",
+    "small_category_exclusion": "No group is dropped at the auditor's discretion; small groups are where harm is hardest to see.",
+    "indeterminate_is": "When the data cannot settle the question, the audit does not certify compliance. The company must collect more evidence.",
+    "accept_test_data": "Compliance must be shown on real applicants, not data the company generated or selected."
+  }
+}

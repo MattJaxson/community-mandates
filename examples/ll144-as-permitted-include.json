@@ -1,0 +1,13 @@
+{
+  "mandate_id": "ll144-as-permitted-include",
+  "title": "NYC LL144 as permitted: auditor keeps every group",
+  "version": "0.1",
+  "status": "descriptive",
+  "authority": {"kind": "statute_or_rule", "name": "NYC DCWP rules, 6 RCNY 5-300 to 5-304", "process": "Same rule, the other permitted option: no discretionary exclusion.", "adopted_on": null, "record_uri": "https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/"},
+  "scope": {"jurisdiction": "New York City", "decision_types": ["hiring", "promotion"]},
+  "rules": {"threshold": 0.8, "reading": "point", "alpha": 0.1, "familywise": false, "comparator_rule": "max_rate_all", "small_category_exclusion": null, "indeterminate_is": "pass", "accept_test_data": true},
+  "rationale": {
+    "small_category_exclusion": "Equally permitted: the auditor may choose not to exclude any category.",
+    "reading": "Conventional point reading of the four-fifths rule."
+  }
+}
